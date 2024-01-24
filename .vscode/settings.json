@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "fopen_utf8.h": "c",
+        "config_components.h": "c",
+        "eval.h": "c",
+        "parseutils.h": "c"
+    }
+}

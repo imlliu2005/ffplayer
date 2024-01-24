@@ -1,0 +1,15 @@
+# ninja log v5
+4	301	7277798850705734	CMakeFiles/ffplayer.dir/src/cmdutils.c.obj	a05e140aa6eb486b
+10	220	7277798849884319	CMakeFiles/ffplayer.dir/src/main.c.obj	98f0125cf37eb4aa
+0	36	0	ffplayer_autogen/mocs_compilation.cpp	d62f84c0237c46e8
+43	76	7277787839522527	CMakeFiles/ffplayer.dir/ffplayer_autogen/mocs_compilation.cpp.obj	74f49d7afcb27a1f
+0	207	7277798849791892	CMakeFiles/ffplayer.dir/src/ffplay_renderer.c.obj	77d7b5c1f99102c3
+0	36	0	D:/test/ffplayer/build/ffplayer_autogen/mocs_compilation.cpp	d62f84c0237c46e8
+1	69	7277800956728837	build.ninja	16c638150b4fa9a7
+6	213	7277798849825601	CMakeFiles/ffplayer.dir/src/opt_common.c.obj	571842b09f130b3e
+1	289	7277799289992176	ffplayer.exe	70319454ddd6e02c
+3	207	7277800971673337	CMakeFiles/ffplayer.dir/src/ffplay_renderer.c.obj	d270bda465c4c3a0
+6	248	7277800972146750	CMakeFiles/ffplayer.dir/src/opt_common.c.obj	8903801b535729d6
+0	342	7277800973085017	CMakeFiles/ffplayer.dir/src/cmdutils.c.obj	f860ad1a226ee00f
+10	377	7277800973397504	CMakeFiles/ffplayer.dir/src/main.c.obj	92537919bd4e7db0
+379	457	7277800974187488	ffplayer.exe	2a6d198b3a45a2d1
