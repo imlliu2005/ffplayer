@@ -20,13 +20,12 @@ include_directories(
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 link_directories(${PROJECT_SOURCE_DIR}/SDL2/lib/x64)
 
-
+######### for build dll #########
 SET(TARGET "ffplayer")
-
 ADD_LIBRARY(ffplayer SHARED ${srcs})
-
 SET(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib")
 SET(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib")
+######### for build dll #########
 
 # add_executable(${PROJECT_NAME}
 #      # If you need a terminal for debug, please comment this statement 
