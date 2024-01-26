@@ -135,16 +135,16 @@ void show_help_options(const OptionDef *options, const char *msg, int req_flags,
     printf("\n");
 }
 
-void show_help_children(const AVClass *class, int flags)
+void show_help_children(const AVClass *class11, int flags)
 {
     void *iter = NULL;
     const AVClass *child;
-    if (class->option) {
-        av_opt_show2(&class, NULL, flags, 0);
+    if (class11->option) {
+        av_opt_show2(&class11, NULL, flags, 0);
         printf("\n");
     }
 
-    while (child = av_opt_child_class_iterate(class, &iter))
+    while (child = av_opt_child_class_iterate(class11, &iter))
         show_help_children(child, flags);
 }
 
@@ -367,15 +367,14 @@ int parse_options(void *optctx, int argc, char **argv, const OptionDef *options,
 {
     const char *opt;
     int optindex, handleoptions = 1, ret;
-
     /* perform system-dependent conversions for arguments list */
-    prepare_app_arguments(&argc, &argv);
+    // prepare_app_arguments(&argc, &argv);
 
     /* parse options */
     optindex = 1;
     while (optindex < argc) {
         opt = argv[optindex++];
-
+        av_log(NULL, AV_LOG_FATAL, "opt:%s\n",opt);
         if (handleoptions && opt[0] == '-' && opt[1] != '\0') {
             if (opt[1] == '-' && opt[2] == '\0') {
                 handleoptions = 0;
