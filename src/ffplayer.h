@@ -48,7 +48,7 @@
 #define EXTERNAL_CLOCK_MAX_FRAMES 10
 
 /* Minimum SDL audio buffer size, in samples. */
-#define SDL_AUDIO_MIN_BUFFER_SIZE 512
+#define SDL_AUDIO_MIN_BUFFER_SIZE 1024
 /* Calculate actual buffer size keeping in mind not cause too frequent audio callbacks */
 #define SDL_AUDIO_MAX_CALLBACKS_PER_SEC 30
 
@@ -377,23 +377,88 @@ static const struct TextureFormatEntry {
 extern "C"{
 #endif
 
-__declspec(dllexport) VideoState* open_ffplayer(int32_t window_handle, char* filename, int x, int y, int speed);
+// __declspec(dllexport) 
 
-// 刷新播放视频
- __declspec(dllexport) void run(VideoState *cur_stream);
-// 总的时长
-// fps
-// 当前播放的位置
-// __declspec(dllexport)  get_info(VideoState *is );
+// 播放控制包含了，播放、暂停、设置音量、静音、定位等方法，用于外部操控播放器。
 
-// 退出播放
- __declspec(dllexport) void do_exit(VideoState *is);
+/***************************************************************
+  * @file      
+  * @brief                  初始化播放器对象，创建播放器
+  * @param  window_handle   播放器嵌入窗口句柄，如果为0则不不嵌入任何窗口
+  * @param  file_name        要播放的文件
+  * @param  window_width    播放器初始宽度
+  * @param  window_height   播放器初始高度
+  * @param  speed           视频播放倍速 speed = "setpts=0.5*PTS";
+  * @author ning
+ **************************************************************/
 
-// 改变播放速度
-__declspec(dllexport) int set_play_speed(const char *arg);
+__declspec(dllexport) VideoState* create_ffplayer(int32_t window_handle, char* file_name, int window_width, int window_height, const char* speed);
 
-// 快进或者后退 seconds 参数为正是快进，参数为负是后退
-__declspec(dllexport) void fast_forward(VideoState *cur_stream, double seconds);
+/***************************************************************
+  * @file      
+  * @brief       刷新播放视频文件
+  * @param  is   当前播放视频对象
+ **************************************************************/
+ __declspec(dllexport) void run(VideoState *is);
+
+ /***************************************************************
+  * @file      
+  * @brief       刷新播放视频文件
+  * @param  is   当前播放视频对象
+ **************************************************************/
+ __declspec(dllexport) void play(VideoState *is);
+
+ /***************************************************************
+  * @file      
+  * @brief       暂停播放
+  * @param  is   当前播放视频对象
+ **************************************************************/
+__declspec(dllexport) void toggle_pause(VideoState *is);
+
+/***************************************************************
+  * @file      
+  * @brief       静音
+  * @param  is   当前播放视频对象
+ **************************************************************/
+__declspec(dllexport) void toggle_mute(VideoState *is);
+
+/***************************************************************
+  * @file      
+  * @brief       退出播放
+  * @param  is   当前播放视频对象
+ **************************************************************/
+__declspec(dllexport) void do_exit(VideoState *is);
+
+/***************************************************************
+  * @file      
+  * @brief          视频快进/快退
+  * @param  is      当前播放视频对象
+  * @param  seconds 快进/快退时间单位秒
+ **************************************************************/
+__declspec(dllexport) void fast_forward(VideoState *is, double seconds);
+
+/***************************************************************
+  * @file      
+  * @brief       音量控制
+  * @param  is   当前播放视频对象
+  * @param  sign 音量大小 +1 -1
+  * @param  step 音量控制的大小以分贝为单位
+ **************************************************************/
+__declspec(dllexport) void update_volume(VideoState *is, int sign, double step);
+
+/***************************************************************
+  * @file      
+  * @brief       获取当前主时钟值(视频当前播放时间)
+  * @param  is   当前播放视频对象
+ **************************************************************/
+__declspec(dllexport) double get_master_clock(VideoState *is);
+
+/***************************************************************
+  * @file      
+  * @brief              获取视频总时长
+  * @param  file_name   视频文件
+ **************************************************************/
+__declspec(dllexport) int64_t* get_video_times(const char *file_name);
 
 #ifdef __cplusplus
 }
